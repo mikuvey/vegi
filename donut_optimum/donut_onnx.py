@@ -11,13 +11,14 @@ tokenizer = AutoTokenizer.from_pretrained("naver-clova-ix/donut-base-finetuned-c
 model = ORTModelForVision2Seq.from_pretrained("naver-clova-ix/donut-base-finetuned-cord-v2", export=True)
 
 #save as .onnx
-save_directory = "tmp/onnx/"
+save_directory = "C:\\Users\\EndUser\\Desktop\\repos\\vegi\\donut_optimum\\models"
 model.save_pretrained(save_directory)
-tokenizer.save_pretrained(save_directory)
+# tokenizer.save_pretrained(save_directory)
 
 # Load document image
 dataset = load_dataset("hf-internal-testing/example-documents", split="test")
-image = Image.fromarray(dataset[2]["image"])
+# image = Image.fromarray(dataset[2]["image"])
+image = dataset[2]["image"]
 
 # Prepare decoder inputs
 task_prompt = "<s_cord-v2>"
@@ -30,7 +31,8 @@ pixel_values = processor(image, return_tensors="pt").pixel_values
 outputs = model.generate(
     pixel_values=pixel_values,
     decoder_input_ids=decoder_input_ids,
-    max_length=model.decoder.config.max_position_embeddings,
+    # max_length=model.decoder.config.max_position_embeddings,
+    max_length=512,
     pad_token_id=tokenizer.pad_token_id,
     eos_token_id=tokenizer.eos_token_id,
     use_cache=True,
