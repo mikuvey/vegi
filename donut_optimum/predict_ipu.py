@@ -5,7 +5,7 @@ from optimum.onnxruntime import ORTModelForVision2Seq
 from datasets import load_dataset
 from PIL import Image
 
-# Load processor, tokenizer, and model
+# Load processor, tokenizer
 processor = DonutProcessor.from_pretrained("naver-clova-ix/donut-base-finetuned-cord-v2")
 tokenizer = AutoTokenizer.from_pretrained("naver-clova-ix/donut-base-finetuned-cord-v2")
 

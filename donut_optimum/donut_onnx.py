@@ -11,7 +11,7 @@ tokenizer = AutoTokenizer.from_pretrained("naver-clova-ix/donut-base-finetuned-c
 model = ORTModelForVision2Seq.from_pretrained("naver-clova-ix/donut-base-finetuned-cord-v2", export=True)
 
 #save as .onnx
-save_directory = "C:\\Users\\EndUser\\Desktop\\repos\\vegi\\donut_optimum\\models"
+save_directory = "C:\\Users\\EndUser\\Desktop\\repos\\models"
 model.save_pretrained(save_directory)
 # tokenizer.save_pretrained(save_directory)
 
